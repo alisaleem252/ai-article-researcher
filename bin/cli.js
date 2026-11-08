@@ -102,6 +102,9 @@ function progress(evt) {
   }
 }
 
+const ac = new AbortController();
+process.on('SIGINT', () => { ac.abort(); console.error('\nCancelled.'); process.exit(130); });
+
 try {
   const client = new RapidTextAI({ apiKey: opts.key });
 
@@ -120,10 +123,11 @@ try {
   for (const [i, topic] of topics.entries()) {
     log(`\n[${i + 1}/${topics.length}] ${topic}`);
     try {
-      const article = await client.generate(buildParams(topic), { onEvent: progress });
+      const t0 = Date.now();
+      const article = await client.generate(buildParams(topic), { onEvent: progress, signal: ac.signal });
       if (opts.json) console.log(JSON.stringify(article, null, 2));
       const files = await saveArticle(article, opts.out, formats);
-      log(`\nDone: "${article.title}" (${article.word_count} words, quality ${article.quality?.score ?? 'n/a'})`);
+      log(`\nDone in ${Math.round((Date.now() - t0) / 1000)}s: "${article.title}" (${article.word_count} words, quality ${article.quality?.score ?? 'n/a'})`);
       for (const f of files) log(`  ${f}`);
       for (const w of article.warnings || []) log(`  warning: ${typeof w === 'string' ? w : JSON.stringify(w)}`);
     } catch (e) {
