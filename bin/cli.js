@@ -98,7 +98,7 @@ function progress(evt) {
     case 'stage': if (evt.status === 'start') log(`• ${evt.stage}...`); break;
     case 'progress': log(`    ${evt.detail ?? ''}`); break;
     case 'outline': log(`  Outline: ${evt.title}\n${(evt.sections || []).map((s) => `    - ${s}`).join('\n')}`); break;
-    case 'section': log(`  ✓ section ${evt.index}/${evt.of}: ${evt.heading}`); break;
+    case 'section': log(`  ✓ section ${evt.index}/${evt.of}: ${evt.heading || 'introduction'}`); break;
   }
 }
 
