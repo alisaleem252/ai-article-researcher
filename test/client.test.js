@@ -31,7 +31,7 @@ test('generate() sends bearer auth + stream flag and returns the result', async 
   srv.close();
   assert.equal(a.title, 'Hello');
   assert.equal(seen.auth, 'Bearer k-1');
-  assert.equal(seen.url, '/openai/v2/article/generate');
+  assert.equal(seen.url, '/openai/v2/article/generate?gigsixkey=k-1');
   assert.equal(seen.body.stream, true);
   assert.deepEqual(events, ['section', 'result']);
 });

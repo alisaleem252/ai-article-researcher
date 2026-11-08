@@ -23,8 +23,13 @@ ${faq}${sources}</body></html>
 `;
 }
 
+/** The server's markdown has whitespace-only lines (nbsp) between blocks; collapse them to plain blank lines. */
+export function tidyMarkdown(md) {
+  return String(md || '').replace(/^[ \t\u00a0]+$/gm, '').replace(/\n{3,}/g, '\n\n').trim();
+}
+
 export function toMarkdown(a) {
-  const parts = [`# ${a.title}`, '', a.body_markdown || ''];
+  const parts = [`# ${a.title}`, '', tidyMarkdown(a.body_markdown)];
   if (a.faq?.length) {
     parts.push('', '## FAQ', '');
     for (const f of a.faq) parts.push(`### ${f.q}`, '', f.a, '');
