@@ -3,12 +3,47 @@
   "version": "1.0.0",
   "description": "Generate researched, SEO-ready articles from the command line or a local web UI using your RapidTextAI API key.",
   "type": "module",
-  "bin": { "article-researcher": "bin/cli.js" },
+  "bin": {
+    "article-researcher": "bin/cli.js"
+  },
   "scripts": {
     "start": "node server.js",
     "generate": "node bin/cli.js",
-    "test": "node --test test/*.test.js"
+    "test": "node --test test/*.test.js",
+    "demo": "node test/mock-api.js"
   },
-  "engines": { "node": ">=18" },
-  "dependencies": {}
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {},
+  "keywords": [
+    "ai",
+    "article-generator",
+    "ai-writing",
+    "seo",
+    "content-generation",
+    "blog",
+    "research",
+    "rapidtextai",
+    "cli",
+    "nodejs",
+    "wordpress",
+    "content-marketing"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alisaleem252/ai-article-researcher.git"
+  },
+  "homepage": "https://github.com/alisaleem252/ai-article-researcher#readme",
+  "bugs": {
+    "url": "https://github.com/alisaleem252/ai-article-researcher/issues"
+  },
+  "files": [
+    "bin",
+    "src",
+    "public",
+    "server.js",
+    ".env.example",
+    "README.md"
+  ]
 }

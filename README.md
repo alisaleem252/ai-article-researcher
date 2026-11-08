@@ -1,5 +1,7 @@
 # AI Article Researcher
 
+![Node 18+](https://img.shields.io/badge/node-%3E%3D18-brightgreen) ![Dependencies](https://img.shields.io/badge/dependencies-0-blue) ![Powered by RapidTextAI](https://img.shields.io/badge/powered%20by-RapidTextAI-4f46e5)
+
 Generate researched, SEO-ready articles from your terminal or a local web page, using your own [RapidTextAI](https://app.rapidtextai.com) API key.
 
 For each topic it runs a full pipeline on the RapidTextAI backend:
@@ -7,6 +9,10 @@ For each topic it runs a full pipeline on the RapidTextAI backend:
 ```
 brief → live web research → outline → section-by-section draft → editor pass → FAQ + metadata → quality checks
 ```
+
+![AI Article Researcher web interface](docs/screenshot.png)
+
+*The screenshot was captured in demo mode with sample text (see below).*
 
 You get back a title, slug, meta description, HTML and Markdown body, FAQ, the sources the article actually links to, tags, and a quality score. Nothing to configure beyond the API key: no other services or dependencies.
 
@@ -40,6 +46,8 @@ npm start
 ```
 
 Open <http://localhost:3000>, enter a topic and press **Generate**. You'll see live progress, then the finished article, which you can copy as HTML or Markdown or download. If you skipped `.env`, the page asks for your key and keeps it in your browser only. The server listens on `127.0.0.1` only, so it isn't exposed to your network.
+
+Want to look around first? `npm run demo` starts the same page against a fake API with sample text, so no key is needed and no units are spent.
 
 ### Option 2: Command line
 
